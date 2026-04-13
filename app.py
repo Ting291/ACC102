@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import io
 
 st.set_page_config(page_title="PetroChina vs Sinopec 财务比率对比", layout="wide")
 st.title("🛢️ 中国石油 vs 中国石化 财务比率对比")
@@ -8,45 +9,23 @@ st.markdown("### ROE、ROA、净利润率、总资产周转率、杠杆倍数")
 
 @st.cache_data
 def load_data():
-    # 检查文件是否存在
-    import os
-    if not os.path.exists("financial_ratios.csv"):
-        st.error("❌ 错误：找不到 'financial_ratios.csv' 文件。请确保该文件与 app.py 在同一目录下，并已上传到 GitHub。")
-        st.stop()
-    
-    df = pd.read_csv("financial_ratios.csv")
-    
-    # 打印列名（调试用，部署后可注释）
-    st.write("调试信息：CSV 列名为", list(df.columns))
-    
-    # 检查是否有 'year' 列（大小写不敏感）
-    if 'year' not in df.columns:
-        # 尝试找大小写不同的列名
-        possible_year = [col for col in df.columns if col.lower() == 'year']
-        if possible_year:
-            df.rename(columns={possible_year[0]: 'year'}, inplace=True)
-        else:
-            st.error("❌ CSV 文件中缺少 'year' 列，请检查导出的数据。")
-            st.stop()
-    
-    # 转换 year 为整数，处理可能的非数字值
     try:
-        df["year"] = pd.to_numeric(df["year"], errors='coerce').astype('Int64')
-        # 删除 year 为空的行
-        df = df.dropna(subset=['year']).copy()
-    except Exception as e:
-        st.error(f"❌ year 列转换失败：{e}")
+        with open("financial_ratios.csv", 'r', encoding='utf-8-sig') as f:
+            content = f.read()
+    except FileNotFoundError:
+        st.error("❌ 找不到 financial_ratios.csv 文件，请确认已上传到 GitHub。")
         st.stop()
     
-    # 确保 Company 列存在并清理空格
-    if 'Company' not in df.columns:
-        st.error("❌ CSV 文件中缺少 'Company' 列。")
-        st.stop()
+    # 去除每行首尾的双引号（解决引号包裹整行的问题）
+    lines = content.strip().split('\n')
+    cleaned_lines = [line.strip('"') for line in lines]
+    cleaned_content = '\n'.join(cleaned_lines)
+    
+    df = pd.read_csv(io.StringIO(cleaned_content))
+    df["year"] = df["year"].astype(int)
     df["Company"] = df["Company"].str.strip()
-    
     return df
 
-# 调用加载函数
 df = load_data()
 
 # 定义指标
@@ -58,7 +37,6 @@ metrics = {
     "leverage": "杠杆倍数 (无%)"
 }
 
-# 侧边栏
 selected_metric = st.sidebar.selectbox(
     "选择要对比的财务指标",
     options=list(metrics.keys()),
@@ -76,10 +54,10 @@ year_range = st.sidebar.slider(
 filtered_df = df[(df["year"] >= year_range[0]) & (df["year"] <= year_range[1])]
 
 if filtered_df.empty:
-    st.warning("⚠️ 没有数据符合所选年份范围，请调整范围。")
+    st.warning("⚠️ 没有数据符合所选年份范围")
     st.stop()
 
-# KPI 卡片
+# KPI
 latest_year = filtered_df["year"].max()
 latest_data = filtered_df[filtered_df["year"] == latest_year]
 
