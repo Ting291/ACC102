@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
+import plotly.graph_objects as go
 st.set_page_config(page_title="PetroChina vs Sinopec 财务比率对比", layout="wide")
 st.title("🛢️ 中国石油 vs 中国石化 财务比率对比")
 st.markdown("### 基于 ROE、ROA、利润率、周转率、杠杆倍数")
@@ -14,9 +14,7 @@ def load_data():
 
 df = load_data()
 
-# 注意：你的 CSV 中 Company 列的值是 'PetrolChina ' (带空格) 和 'Sinopec'
-# 为了显示美观，可以统一去掉空格
-df["Company"] = df["Company"].str.strip()
+
 
 metrics = {
     "roe": "ROE (净资产收益率 %)",
