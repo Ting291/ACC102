@@ -37,7 +37,7 @@ This project compares the financial performance of China’s two largest oil com
    - Displays pivot tables and saves `financial_ratios.csv`  
 
 ## 6. Product link / Demo
-- **GitHub repository**: [(https://github.com/Ting291/ACC102)]  
+- **GitHub repository**: [https://github.com/Ting291/ACC102]  
 - **Demo video**: [Add YouTube/Bilibili link here]  
 - **Interactive version **: [https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/]  
 
