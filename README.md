@@ -91,9 +91,9 @@ streamlit run app.py
 
 ---
 
-**## 7. Repository Structure**
+## 7. Repository Structure
 
-# acc102-financial-ratios/
+ acc102-financial-ratios/
  ├── ACC102.ipynb           # Original data extraction & ratio calculation
  ├── README.md              # This file
  ├── app.py                 # Streamlit main application
@@ -102,15 +102,15 @@ streamlit run app.py
 
 ---
 
-**## 8. Limitations & Next Steps**
+## 8. Limitations & Next Steps
 
-# Current limitations:
+ Current limitations:
  - Only two companies – could be extended to more oil & gas peers
  - Data ends at 2024 – update when 2025 reports become available
  - No user-uploaded data functionality
  - Free tier Streamlit Cloud may sleep after inactivity
 
-# Next steps:
+ Next steps:
  - Add benchmark comparison (industry average)
  - Include financial health score
  - Add PDF report export
@@ -118,7 +118,7 @@ streamlit run app.py
 
 ---
 
-**## 9. Acknowledgements**
+## 9. Acknowledgements
 
-# Data provided by WRDS (Wharton Research Data Services) – CSMAR database
-# Built with Streamlit, Pandas, and Plotly
+ Data provided by WRDS (Wharton Research Data Services) – CSMAR database
+ Built with Streamlit, Pandas, and Plotly
