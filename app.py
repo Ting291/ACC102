@@ -69,7 +69,7 @@ with col2:
     st.metric("🏭 Sinopec ROE", f"{sinopec_roe:.1f}%")
 
 # Line Chart
-st.subheader(f"📈 Trend of{metrics[selected_metric]} ")
+st.subheader(f"📈 Trend of {metrics[selected_metric]} ")
 plot_df = filtered_df.copy()
 if selected_metric != "leverage":
     plot_df[selected_metric] = plot_df[selected_metric] * 100
