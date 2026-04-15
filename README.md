@@ -63,20 +63,22 @@ When you use the tool, you will observe:
 
 ## 5. How to Run Locally 
 
-# 1. Clone the repository
+ 1. Clone the repository
 git clone https://github.com/[请修改]/acc102-financial-ratios.git
 cd acc102-financial-ratios
 
-# 2. Install dependencies
+ 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Run the Streamlit app
+ 3. Run the Streamlit app
 streamlit run app.py
 
-# requirements.txt:
+ requirements.txt:
  streamlit>=1.28.0
  pandas>=2.0.0
  plotly>=5.0.0
+
+---
 
 ## 6. Product Links
 
@@ -87,6 +89,8 @@ streamlit run app.py
 | GitHub Repository | https://github.com/[请修改]/acc102-financial-ratios |
 | Jupyter Notebook | ACC102.ipynb |
 
+---
+
 **## 7. Repository Structure**
 
 # acc102-financial-ratios/
@@ -95,6 +99,8 @@ streamlit run app.py
  ├── app.py                 # Streamlit main application
  ├── financial_ratios.csv   # Cleaned data (cached)
  ├── requirements.txt       # Python dependencies
+
+---
 
 **## 8. Limitations & Next Steps**
 
@@ -109,6 +115,8 @@ streamlit run app.py
  - Include financial health score
  - Add PDF report export
  - Implement real-time data refresh
+
+---
 
 **## 9. Acknowledgements**
 
