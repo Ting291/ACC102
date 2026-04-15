@@ -64,7 +64,7 @@ When you use the tool, you will observe:
 ## 5. How to Run Locally 
 
  1. Clone the repository
-git clone https://github.com/[请修改]/acc102-financial-ratios.git
+git clone https://github.com/Ting291/ACC102
 cd acc102-financial-ratios
 
  2. Install dependencies
@@ -86,19 +86,19 @@ streamlit run app.py
 |------|------|
 | Live Interactive Tool | https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/ |
 | Demo Video | [请修改：YouTube/Bilibili链接] |
-| GitHub Repository | https://github.com/[请修改]/acc102-financial-ratios |
+| GitHub Repository | https://github.com/Ting291/ACC102|
 | Jupyter Notebook | ACC102.ipynb |
 
 ---
 
 ## 7. Repository Structure
 
- acc102-financial-ratios/
- ├── ACC102.ipynb           # Original data extraction & ratio calculation
- ├── README.md              # This file
- ├── app.py                 # Streamlit main application
- ├── financial_ratios.csv   # Cleaned data (cached)
- ├── requirements.txt       # Python dependencies
+ ACC102/
+ ── ACC102.ipynb           # Original data extraction & ratio calculation
+ ── README.md              # This file
+ ── app.py                 # Streamlit main application
+ ── financial_ratios.csv   # Cleaned data (cached)
+ ── requirements.txt       # Python dependencies
 
 ---
 
