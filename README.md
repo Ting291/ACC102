@@ -6,14 +6,6 @@ Track 4 – Interactive Data Analysis Tool (Streamlit)
 
 ---
 
-# Financial Ratio Comparison Tool | PetroChina vs Sinopec
-
-**Track 4 – Interactive Data Analysis Tool (Streamlit)**  
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://[请修改].streamlit.app)
-
----
-
 ## 1. Problem & User
 
 This interactive tool allows users to **compare financial ratios** (ROE, ROA, Profit Margin, Turnover, Leverage) between **PetroChina (601857)** and **Sinopec (600028)** from 2021 to 2024. The target users are **accounting students**, **equity analysts**, and **investors** who want an on‑demand, visual comparison without writing code or navigating complex databases.
@@ -23,7 +15,7 @@ This interactive tool allows users to **compare financial ratios** (ROE, ROA, Pr
 ## 2. Data
 
 - **Source**: WRDS (Wharton Research Data Services) – CSMAR Financial Master table
-- **Access date**: [请修改，例如：15 April 2026]
+- **Access date**: [15 April 2026]
 - **Time period**: 2021–2024 (year‑end December only)
 - **Key fields**: `stkcd`, `accper`, net profit, total assets, total equity, total revenue
 - **Data file in repo**: `financial_ratios.csv` (cached so the app works without WRDS credentials)
@@ -69,9 +61,8 @@ When you use the tool, you will observe:
 
 ---
 
-## 5. How to Run Locally
+## 5. How to Run Locally 
 
-```bash
 # 1. Clone the repository
 git clone https://github.com/[请修改]/acc102-financial-ratios.git
 cd acc102-financial-ratios
@@ -83,39 +74,41 @@ pip install -r requirements.txt
 streamlit run app.py
 
 # requirements.txt:
-# streamlit>=1.28.0
-# pandas>=2.0.0
-# plotly>=5.0.0
+ streamlit>=1.28.0
+ pandas>=2.0.0
+ plotly>=5.0.0
 
-**## 6. Product Links**
+## 6. Product Links
 
-# Live Interactive Tool: https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/
-# Demo Video: [请修改：YouTube/Bilibili链接]
-# GitHub Repository: https://github.com/Ting291/ACC102
-# Jupyter Notebook: ACC102.ipynb
+| Type | Link |
+|------|------|
+| Live Interactive Tool | https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/ |
+| Demo Video | [请修改：YouTube/Bilibili链接] |
+| GitHub Repository | https://github.com/[请修改]/acc102-financial-ratios |
+| Jupyter Notebook | ACC102.ipynb |
 
 **## 7. Repository Structure**
 
 # acc102-financial-ratios/
-# ├── ACC102.ipynb           # Original data extraction & ratio calculation
-# ├── README.md              # This file
-# ├── app.py                 # Streamlit main application
-# ├── financial_ratios.csv   # Cleaned data (cached)
-# ├── requirements.txt       # Python dependencies
+ ├── ACC102.ipynb           # Original data extraction & ratio calculation
+ ├── README.md              # This file
+ ├── app.py                 # Streamlit main application
+ ├── financial_ratios.csv   # Cleaned data (cached)
+ ├── requirements.txt       # Python dependencies
 
 **## 8. Limitations & Next Steps**
 
 # Current limitations:
-# - Only two companies – could be extended to more oil & gas peers
-# - Data ends at 2024 – update when 2025 reports become available
-# - No user-uploaded data functionality
-# - Free tier Streamlit Cloud may sleep after inactivity
+ - Only two companies – could be extended to more oil & gas peers
+ - Data ends at 2024 – update when 2025 reports become available
+ - No user-uploaded data functionality
+ - Free tier Streamlit Cloud may sleep after inactivity
 
 # Next steps:
-# - Add benchmark comparison (industry average)
-# - Include financial health score
-# - Add PDF report export
-# - Implement real-time data refresh
+ - Add benchmark comparison (industry average)
+ - Include financial health score
+ - Add PDF report export
+ - Implement real-time data refresh
 
 **## 9. Acknowledgements**
 
