@@ -1,48 +1,101 @@
-# Financial Ratio Analysis: PetroChina vs Sinopec
+# Financial Ratio Comparison Tool | PetroChina vs Sinopec
 
-## 1. Problem & User 
-This project compares the financial performance of China’s two largest oil companies – **PetroChina (601857)** and **Sinopec (600028)** – using key profitability and leverage ratios. The target users are **accounting students, equity analysts, or investors** who need a quick, data‑driven comparison of these two firms.
+**Track 4 – Interactive Data Analysis Tool (Streamlit)**  
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://[请修改].streamlit.app)
+
+## 1. Problem & User
+
+This interactive tool allows users to **compare financial ratios** (ROE, ROA, Profit Margin, Turnover, Leverage) between **PetroChina (601857)** and **Sinopec (600028)** from 2021 to 2024. The target users are **accounting students**, **equity analysts**, and **investors** who want an on‑demand, visual comparison without writing code or navigating complex databases.
 
 ## 2. Data
-- **Source**: WRDS (Wharton Research Data Services) – CSMAR Financial Master table  
-- **Access date**: 15 April 2026  
-- **Key fields**: `stkcd` (stock code), `accper` (reporting date), net profit, total assets, total equity, total revenue  
-- **Time period**: 2021–2024 (year‑end December only)  
 
-## 3. Methods
-- **Data extraction**: SQL query inside Python to download raw data from WRDS  
-- **Ratio calculation** (done in SQL):  
+- **Source**: WRDS (Wharton Research Data Services) – CSMAR Financial Master table  
+- **Access date**: [请修改，例如：15 April 2026]  
+- **Time period**: 2021–2024 (year‑end December only)  
+- **Key fields**: `stkcd`, `accper`, net profit, total assets, total equity, total revenue  
+- **Data file in repo**: `financial_ratios.csv` (cached so the app works without WRDS credentials)
+
+## 3. Methods & Technical Implementation
+
+### Backend (Python)
+- **Data extraction**: SQL query from WRDS (see `ACC102.ipynb` for the original extraction)  
+- **Ratio calculations**:  
   - ROE = Net Profit / Total Equity  
   - ROA = Net Profit / Total Assets  
   - Profit Margin = Net Profit / Total Revenue  
   - Asset Turnover = Total Revenue / Total Assets  
   - Leverage = Total Assets / Total Equity  
-- **Filtering**: keep only December year‑end reports, data from start_year (2021) onward  
-- **Reshaping**: create pivot tables (companies as rows, years as columns)  
-- **Formatting**: percentages for profitability ratios, raw ratios for leverage  
+- **Data cleaning**: keep only December year‑end reports, filter from 2021 onward
+
+### Frontend (Streamlit)
+- **Interactive widgets**: dropdown selector for company, slider for year range  
+- **Visualisations**: line charts showing trends over time  
+- **Comparison mode**: toggle to show both companies on the same chart  
+- **Data table**: raw numbers in a sortable/filterable table
+
+### Deployment
+- **Platform**: Streamlit Community Cloud (free)  
+- **Link**: https://[请修改].streamlit.app  
+- **Auto‑deploys** from this GitHub repository on every `git push`
 
 ## 4. Key Findings
-- **PetroChina** shows stronger and improving profitability (ROE 8.1% → 10.7%, Profit Margin 4.4% → 6.3%)  
-- **Sinopec** has declining ROE (9.3% → 5.9%) and lower profit margins (~2%)  
-- **Sinopec** operates with higher leverage (~2.1×) than PetroChina (~1.7×), implying more debt reliance  
-- Both companies have similar asset turnover (~1.0–1.7×), but Sinopec’s efficiency is slightly higher  
 
-## 5. How to run
-1. Install required packages: `pip install wrds pandas`  
-2. Replace `username = 'your_username'` with your WRDS credentials  
-3. Run the notebook `ACC102.ipynb` top to bottom  
-4. The notebook automatically:  
-   - Connects to WRDS  
-   - Downloads and calculates ratios  
-   - Displays pivot tables and saves `financial_ratios.csv`  
+When you use the tool, you will observe:
 
-## 6. Product link / Demo
-- **GitHub repository**: [https://github.com/Ting291/ACC102]  
-- **Demo video**: [Add YouTube/Bilibili link here]  
-- **Interactive version **: [https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/]  
+- **PetroChina** shows improving profitability: ROE from 8.1% (2021) → 10.7% (2024), profit margin from 4.4% → 6.3%  
+- **Sinopec** has declining performance: ROE from 9.3% → 5.9%, profit margin stuck around 2%  
+- **Leverage** is consistently higher for Sinopec (~2.1×) than PetroChina (~1.7×), suggesting greater debt reliance  
+- **Asset turnover** is similar for both (1.0–1.7×), typical for capital‑intensive oil & gas operations
 
-## 7. Limitations & next steps
-- Only two companies – can be extended to more oil & gas peers  
-- Data stops at 2024 – update when 2025 reports become available  
-- No visualisations yet – next step: add line charts of ROE / margin trends  
-- Requires WRDS access – future version could cache data to reduce repeated downloads  
+## 5. How to Run Locally
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/[请修改]/acc102-financial-ratios.git
+cd acc102-financial-ratios
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run the Streamlit app
+streamlit run app.py
+
+# requirements.txt：
+# streamlit>=1.28.0
+# pandas>=2.0.0
+# plotly>=5.0.0
+
+## 6. Product Links
+
+Live Interactive Tool	https://[请修改].streamlit.app
+Demo Video	[请修改：YouTube/Bilibili链接]
+GitHub Repository	https://github.com/[请修改]/acc102-financial-ratios
+Jupyter Notebook	ACC102.ipynb
+
+## 7. Repository Structure
+
+acc102-financial-ratios/
+├── app.py                 # Streamlit main application
+├── ACC102.ipynb           # Original data extraction & ratio calculation
+├── financial_ratios.csv   # Cleaned data (cached)
+├── requirements.txt       # Python dependencies
+├── README.md              # This file
+└── figures/               # Charts and screenshots (optional)
+
+8# 8. Limitations & Next Steps
+
+##Current limitations:
+#Only two companies – could be extended to more oil & gas peers
+#Data ends at 2024 – update when 2025 reports become available
+#No user‑uploaded data functionality
+#Free tier Streamlit Cloud may sleep after inactivity
+
+##Next steps:
+#Add benchmark comparison (industry average)
+#Include financial health score
+#Add PDF report export
+#Implement real‑time data refresh
+
+## 9. Acknowledgements
+Data provided by WRDS (Wharton Research Data Services) – CSMAR database
+Built with Streamlit, Pandas, and Plotly
