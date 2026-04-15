@@ -3,9 +3,9 @@ import pandas as pd
 import plotly.express as px
 import io
 
-st.set_page_config(page_title="PetroChina vs Sinopec 财务比率对比", layout="wide")
-st.title("🛢️ 中国石油 vs 中国石化 财务比率对比")
-st.markdown("### ROE、ROA、净利润率、总资产周转率、杠杆倍数")
+st.set_page_config(page_title="PetroChina vs Sinopec Financial Ratios", layout="wide")
+st.title("🛢️ PetroChina vs Sinopec Financial Ratio")
+st.markdown("### ROE、ROA、Net Profit Margin、Total Asset Turnover、Leverage Ratio")
 
 @st.cache_data
 def load_data():
@@ -13,10 +13,9 @@ def load_data():
         with open("financial_ratios.csv", 'r', encoding='utf-8-sig') as f:
             content = f.read()
     except FileNotFoundError:
-        st.error("❌ 找不到 financial_ratios.csv 文件，请确认已上传到 GitHub。")
+        st.error("❌ financial_ratios.csv not found，请Please ensure the file is uploaded to GitHub。")
         st.stop()
     
-    # 去除每行首尾的双引号（解决引号包裹整行的问题）
     lines = content.strip().split('\n')
     cleaned_lines = [line.strip('"') for line in lines]
     cleaned_content = '\n'.join(cleaned_lines)
@@ -28,24 +27,24 @@ def load_data():
 
 df = load_data()
 
-# 定义指标
+# define metrics
 metrics = {
-    "roe": "ROE (净资产收益率 %)",
-    "roa": "ROA (总资产收益率 %)",
-    "profitmargin": "净利润率 %",
-    "turnover": "总资产周转率 %",
-    "leverage": "杠杆倍数 (无%)"
+    "roe": "ROE (Return on Equity %)",
+    "roa": "ROA (Return on Assets %)",
+    "profitmargin": "Net Profit Margin %",
+    "turnover": "Total Asset Turnover %",
+    "leverage": "Leverage Ratio (no %)"
 }
 
 selected_metric = st.sidebar.selectbox(
-    "选择要对比的财务指标",
+    "Select a financial metric to compare",
     options=list(metrics.keys()),
     format_func=lambda x: metrics[x]
 )
 
 years = sorted(df["year"].unique())
 year_range = st.sidebar.slider(
-    "选择年份范围",
+    "Select year range",
     min_value=int(min(years)),
     max_value=int(max(years)),
     value=(int(min(years)), int(max(years)))
@@ -54,7 +53,7 @@ year_range = st.sidebar.slider(
 filtered_df = df[(df["year"] >= year_range[0]) & (df["year"] <= year_range[1])]
 
 if filtered_df.empty:
-    st.warning("⚠️ 没有数据符合所选年份范围")
+    st.warning("⚠️ No data available for the selected year range")
     st.stop()
 
 # KPI
@@ -64,13 +63,13 @@ latest_data = filtered_df[filtered_df["year"] == latest_year]
 col1, col2 = st.columns(2)
 with col1:
     petrochina_roe = latest_data[latest_data["Company"]=="PetrolChina"]["roe"].values[0] * 100
-    st.metric("⛽ 中国石油 ROE", f"{petrochina_roe:.1f}%")
+    st.metric("⛽ PetrolChina ROE", f"{petrochina_roe:.1f}%")
 with col2:
     sinopec_roe = latest_data[latest_data["Company"]=="Sinopec"]["roe"].values[0] * 100
-    st.metric("🏭 中国石化 ROE", f"{sinopec_roe:.1f}%")
+    st.metric("🏭 Sinopec ROE", f"{sinopec_roe:.1f}%")
 
-# 折线图
-st.subheader(f"📈 {metrics[selected_metric]} 趋势对比")
+# Line Chart
+st.subheader(f"📈 Trend of{metrics[selected_metric]} ")
 plot_df = filtered_df.copy()
 if selected_metric != "leverage":
     plot_df[selected_metric] = plot_df[selected_metric] * 100
@@ -81,33 +80,33 @@ fig_line = px.line(
     y=selected_metric,
     color="Company",
     markers=True,
-    title=f"{metrics[selected_metric]} 随时间变化",
-    labels={selected_metric: metrics[selected_metric], "year": "年份"}
+    title=f"{metrics[selected_metric]} Over Time",
+    labels={selected_metric: metrics[selected_metric], "year": "Year"}
 )
 st.plotly_chart(fig_line, use_container_width=True)
 
-# 柱状图
-st.subheader(f"📊 各年份 {metrics[selected_metric]} 对比")
+# Bar Chart
+st.subheader(f"📊 Annual Comparison of {metrics[selected_metric]} ")
 fig_bar = px.bar(
     plot_df,
     x="year",
     y=selected_metric,
     color="Company",
     barmode="group",
-    title=f"{metrics[selected_metric]} 年度对比",
-    labels={selected_metric: metrics[selected_metric], "year": "年份"}
+    title=f"Annual Coparison of {metrics[selected_metric]}",
+    labels={selected_metric: metrics[selected_metric], "year": "Year"}
 )
 st.plotly_chart(fig_bar, use_container_width=True)
 
-with st.expander("📋 查看原始数据"):
+with st.expander("📋 View Raw Data"):
     st.dataframe(filtered_df)
 
-st.subheader("💡 核心发现")
+st.subheader("💡 Key Insights")
 st.markdown("""
-- **中国石油 ROE 持续高于中国石化**：2024 年石油 10.7% vs 石化 5.9%
-- **净利润率**：石油从 4.4% 升至 6.3%，石化从 3.1% 降至 1.9%
-- **总资产周转率**：两家均 >1，石化更高（约 1.5-1.7），石油约 1.0-1.2
-- **杠杆倍数**：石化约 2.1 倍，石油约 1.6-1.8 倍，石化财务杠杆更高
+- **PetroChina ROE consistently higher than Sinopec**: 2024 PetroChina 10.7% vs Sinopec 5.9%
+- **Net Profit Margin**: PetroChina rose from 4.4% to 6.3%; Sinopec fell from 3.1% to 1.9%
+- **Total Asset Turnover**: Both > 1; Sinopec higher (≈1.5–1.7), PetroChina ≈1.0–1.2
+- **Leverage Ratio**: Sinopec ≈2.1x, PetroChina ≈1.6–1.8x; Sinopec uses higher financial leverage
 """)
 
-st.caption("数据来源：CSMAR (via WRDS) | 分析期间：2021-2024")
+st.caption("Data Source: CSMAR (via WRDS) | Period: 2021–2024")
