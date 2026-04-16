@@ -65,11 +65,6 @@ pip install -r requirements.txt
  3. Run the Streamlit app
 streamlit run app.py
 
- requirements.txt:
- streamlit>=1.28.0
- pandas>=2.0.0
- plotly>=5.0.0
-
 ---
 
 ## 6. Product Links
