@@ -2,8 +2,6 @@
 
 Track 4 – Interactive Data Analysis Tool (Streamlit)
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/)
-
 ---
 
 ## 1. Problem & User
@@ -42,12 +40,6 @@ This interactive tool allows users to **compare financial ratios** (ROE, ROA, Pr
 - **Comparison mode**: toggle to show both companies on the same chart
 - **Data table**: raw numbers in a sortable/filterable table
 
-### Deployment
-
-- **Platform**: Streamlit Community Cloud (free)
-- **Link**: https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/
-- **Auto‑deploys**: from this GitHub repository on every `git push`
-
 ---
 
 ## 4. Key Findings
@@ -84,7 +76,6 @@ streamlit run app.py
 
 | Type | Link |
 |------|------|
-| Live Interactive Tool | https://acc102-h6xxngn4nevs8uwdr2fefg.streamlit.app/ |
 | Demo Video | [请修改：YouTube/Bilibili链接] |
 | GitHub Repository | https://github.com/Ting291/ACC102|
 | Jupyter Notebook | ACC102.ipynb |
