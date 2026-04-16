@@ -57,7 +57,7 @@ When you use the tool, you will observe:
 
  1. Clone the repository
 git clone https://github.com/Ting291/ACC102
-cd acc102-financial-ratios
+cd ACC102
 
  2. Install dependencies
 pip install -r requirements.txt
