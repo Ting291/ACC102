@@ -79,12 +79,12 @@ streamlit run app.py
 
 ## 7. Repository Structure
 
- ACC102/ 
- |── ACC102.ipynb |          # Original data extraction & ratio calculation |
- | ── README.md |            # This file |
- |── app.py |                # Streamlit main application |
- |── financial_ratios.csv|   # Cleaned data (cached) |
- |── requirements.txt|       # Python dependencies |
+ | ACC102/ |
+ | ── ACC102.ipynb |          # Original data extraction & ratio calculation |
+ | ── README.md |             # This file |
+ | ── app.py |                # Streamlit main application |
+ | ── financial_ratios.csv|   # Cleaned data (cached) |
+ | ── requirements.txt|       # Python dependencies |
 
 ---
 
