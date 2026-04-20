@@ -71,7 +71,7 @@ streamlit run app.py
 
 | Type | Link |
 |------|------|
-| Demo Video | [请修改：YouTube/Bilibili链接] |
+| Demo Video | [https://www.bilibili.com/video/BV1V1dHBtEo2/?vd_source=5c05d27a3797a1b566b8e4bd681b9cae] |
 | GitHub Repository | https://github.com/Ting291/ACC102|
 | Jupyter Notebook | ACC102.ipynb |
 
@@ -79,12 +79,12 @@ streamlit run app.py
 
 ## 7. Repository Structure
 
- ACC102/
- ── ACC102.ipynb           # Original data extraction & ratio calculation
- ── README.md              # This file
- ── app.py                 # Streamlit main application
- ── financial_ratios.csv   # Cleaned data (cached)
- ── requirements.txt       # Python dependencies
+ |ACC102/ |
+ |── ACC102.ipynb           # Original data extraction & ratio calculation |
+ | ── README.md             # This file |
+ |── app.py                 # Streamlit main application |
+ |── financial_ratios.csv   # Cleaned data (cached) |
+ |── requirements.txt       # Python dependencies |
 
 ---
 
